@@ -1,1 +1,1 @@
-web: java -jar build/libs/mmd-ktor-telegram-all.jar
+web: java -jar build/libs/your-app-name.jar
