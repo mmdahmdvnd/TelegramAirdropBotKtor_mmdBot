@@ -1,3 +1,5 @@
+import com.github.jengelman.gradle.plugins.shadow.tasks.ShadowJar
+
 val kotlin_version: String by project
 val logback_version = "1.4.12" // مقداردهی به متغیر logback_version
 
@@ -42,9 +44,11 @@ dependencies {
     implementation("org.slf4j:slf4j-api:2.0.16") // SLF4J API
 }
 
-// پیکربندی تسک shadowJar
-tasks.named<org.gradle.api.tasks.bundling.Jar>("shadowJar") {
-    archiveBaseName.set("your-app-name")
-    archiveVersion.set("0.0.1")
-    archiveClassifier.set("") // اگر نیاز به تغییر داشته باشید، می‌توانید تنظیم کنید
+tasks.withType<ShadowJar> {
+    archiveBaseName.set("mmd-ktor-telegram") // نام فایل JAR
+    archiveClassifier.set("all") // پسوند فایل (اختیاری)
+    mergeServiceFiles() // ادغام فایل‌های سرویس
+    manifest {
+        attributes["Main-Class"] = application.mainClass.get() // کلاس اصلی از application
+    }
 }
