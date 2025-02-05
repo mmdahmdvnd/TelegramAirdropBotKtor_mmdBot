@@ -1,14 +1,11 @@
-package ir.androidmaterial
+import org.telegram.telegrambots.bots.TelegramLongPollingBot
+import org.telegram.telegrambots.meta.api.objects.Update
 
-import org.telegram.telegrambots.meta.generics.BotOptions
+class MyAirdropBot(botToken: String) : TelegramLongPollingBot(botToken) {
 
-class MyAirdropBot(function: () -> Unit) : AirdropBot(function) {
+ override fun getBotUsername(): String = "YOUR_BOT_USERNAME"
 
- override fun getOptions(): BotOptions {
-  return object : BotOptions {
-   override fun getBaseUrl(): String {
-    return "https://api.telegram.org"  // مقدار پیش‌فرض برای API تلگرام
-   }
-  }
+ override fun onUpdateReceived(update: Update) {
+  // پیاده‌سازی منطق بات
  }
 }
